@@ -1,9 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# Kevin's Adobe EDS Sandbox
+Experimenting with Adobe EDS.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--on-edge--kevinroberts.hlx.page/
+- Live: https://main--on-edge--kevinroberts.hlx.live/
 
 ## Installation
 
