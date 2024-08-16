@@ -1,83 +1,89 @@
 (function () {
   // ======= Sticky
   window.onscroll = function () {
-    const headerEle = document.querySelector(".ud-header");
+    const headerEle = document.querySelector('.ud-header');
     const sticky = headerEle.offsetTop;
-    const logo = document.querySelectorAll(".header-logo");
+    const logo = document.querySelectorAll('.header-logo');
 
     if (window.pageYOffset > sticky) {
-      headerEle.classList.add("sticky");
+      headerEle.classList.add('sticky');
     } else {
-      headerEle.classList.remove("sticky");
+      headerEle.classList.remove('sticky');
     }
 
-    if(logo.length) {
+    if (logo.length) {
       // === logo change
-      if (headerEle.classList.contains("sticky")) {
-        document.querySelector(".header-logo").src =
-          "assets/logo/logo.svg"
+      if (headerEle.classList.contains('sticky')) {
+        document.querySelector('.header-logo').src =
+          'assets/logo/logo.svg';
       } else {
-        document.querySelector(".header-logo").src =
-          "assets/logo/logo-white.svg"
+        document.querySelector('.header-logo').src =
+          'assets/logo/logo-white.svg';
       }
     }
 
-    if (document.documentElement.classList.contains("dark")) {
-      if(logo.length) {
+    if (document.documentElement.classList.contains('dark')) {
+      if (logo.length) {
         // === logo change
-        if (headerEle.classList.contains("sticky")) {
-          document.querySelector(".header-logo").src =
-            "assets/logo/logo-white.svg"
+        if (headerEle.classList.contains('sticky')) {
+          document.querySelector('.header-logo').src =
+            'assets/logo/logo-white.svg';
         }
       }
     }
 
     // show or hide the back-top-top button
-    const backToTop = document.querySelector(".back-to-top");
+    const backToTop = document.querySelector('.back-to-top');
     if (
       document.body.scrollTop > 50 ||
       document.documentElement.scrollTop > 50
     ) {
-      backToTop.style.display = "flex";
+      backToTop.style.display = 'flex';
     } else {
-      backToTop.style.display = "none";
+      backToTop.style.display = 'none';
     }
   };
 
   // ===== responsive navbar
-  let navbarToggler = document.querySelector("#navbarToggler");
-  const navbarCollapse = document.querySelector("#navbarCollapse");
+  const navbarToggler = document.querySelector('#navbarToggler');
+  const navbarCollapse = document.querySelector('#navbarCollapse');
 
-  navbarToggler.addEventListener("click", () => {
-    navbarToggler.classList.toggle("navbarTogglerActive");
-    navbarCollapse.classList.toggle("hidden");
+  navbarToggler.addEventListener('click', () => {
+    navbarToggler.classList.toggle('navbarTogglerActive');
+    navbarCollapse.classList.toggle('hidden');
   });
 
-  //===== close navbar-collapse when a  clicked
+  // close navbar-collapse when a  clicked
   document
-    .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
-    .forEach((e) =>
-      e.addEventListener("click", () => {
-        navbarToggler.classList.remove("navbarTogglerActive");
-        navbarCollapse.classList.add("hidden");
-      })
-    );
+    .querySelectorAll('#navbarCollapse ul li:not(.submenu-item) a')
+    .forEach((e) => e.addEventListener('click', () => {
+      navbarToggler.classList.remove('navbarTogglerActive');
+      navbarCollapse.classList.add('hidden');
+    }));
 
   // ===== Sub-menu
-  const submenuItems = document.querySelectorAll(".submenu-item");
+  const submenuItems = document.querySelectorAll('.submenu-item');
   submenuItems.forEach((el) => {
-    el.querySelector("a").addEventListener("click", () => {
-      el.querySelector(".submenu").classList.toggle("hidden");
-    });
+    el.querySelector('a')
+      .addEventListener('click', () => {
+        el.querySelector('.submenu')
+          .classList
+          .toggle('hidden');
+      });
   });
 
   // ===== Faq accordion
-  const faqs = document.querySelectorAll(".single-faq");
+  const faqs = document.querySelectorAll('.single-faq');
   faqs.forEach((el) => {
-    el.querySelector(".faq-btn").addEventListener("click", () => {
-      el.querySelector(".icon").classList.toggle("rotate-180");
-      el.querySelector(".faq-content").classList.toggle("hidden");
-    });
+    el.querySelector('.faq-btn')
+      .addEventListener('click', () => {
+        el.querySelector('.icon')
+          .classList
+          .toggle('rotate-180');
+        el.querySelector('.faq-content')
+          .classList
+          .toggle('hidden');
+      });
   });
 
   // ===== wow js
@@ -112,11 +118,11 @@
     return (-c / 2) * (t * (t - 2) - 1) + b;
   };
 
-  document.querySelector(".back-to-top").onclick = () => {
+  document.querySelector('.back-to-top').onclick = () => {
     scrollTo(document.documentElement);
   };
 
-    /* ========  themeSwitcher start ========= */
+  /* ========  themeSwitcher start ========= */
 
   // themeSwitcher
   const themeSwitcher = document.getElementById('themeSwitcher');
@@ -129,7 +135,7 @@
   const themeCheck = () => {
     if (userTheme === 'dark' || (!userTheme && systemTheme)) {
       document.documentElement.classList.add('dark');
-      return;
+
     }
   };
 
