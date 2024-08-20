@@ -1,6 +1,34 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
+// ====== scroll top js
+function scrollTo(element, to = 0, duration = 500) {
+  const start = element.scrollTop;
+  const change = to - start;
+  const increment = 20;
+  let currentTime = 0;
+
+  const animateScroll = () => {
+    currentTime += increment;
+    const val = Math.easeInOutQuad(currentTime, start, change, duration);
+    element.scrollTop = val;
+    if (currentTime < duration) {
+      setTimeout(animateScroll, increment);
+    }
+  };
+
+  animateScroll();
+}
+
+Math.easeInOutQuad = function (t, b, c, d) {
+  // eslint-disable-next-line no-param-reassign
+  t /= d / 2;
+  if (t < 1) return (c / 2) * t * t + b;
+  // eslint-disable-next-line no-param-reassign
+  t -= 1;
+  return (-c / 2) * (t * (t - 2) - 1) + b;
+};
+
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
@@ -22,17 +50,10 @@ export default async function decorate(block) {
         <div class="-mx-4 flex flex-wrap">
           <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-3/12">
             <div class="mb-10 w-full">
-              <a
-                href="/"
-                class="mb-6 inline-block max-w-[160px]"
-              >
-                <img
-                  src="/assets/logo/logo-white.svg"
-                  alt="logo"
-                  class="max-w-full"
-                />
+              <a href="/" class="mb-6 inline-block max-w-[160px]">
+                <img src="/assets/logo/logo-white.svg" alt="logo" class="max-w-full" />
               </a>
-              <p class="mb-8 max-w-[270px] text-base text-gray-7"> We create digital experiences for brands and companies by using technology. </p>
+              <p class="mb-8 max-w-[270px] text-base text-gray-7"> We create digital experiences for brands and companies by using technology.</p>
               <div class="-mx-3 flex items-center">
                 <a href="javascript:void(0)" class="px-3 text-gray-7 hover:text-white">
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-current">
@@ -101,10 +122,7 @@ export default async function decorate(block) {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="mb-3 inline-block text-base text-gray-7 hover:text-primary"
-                  >
+                  <a href="javascript:void(0)" class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
                     Privacy policy
                   </a>
                 </li>
@@ -178,7 +196,7 @@ export default async function decorate(block) {
                 >
                   <div class="overflow-hidden rounded">
                     <img
-                      src="/assets/images/blog/blog-footer-01.jpg"
+                      src="/assets/blog/blog-footer-01.jpg"
                       alt="blog"
                     />
                   </div>
@@ -194,7 +212,7 @@ export default async function decorate(block) {
                 >
                   <div class="overflow-hidden rounded">
                     <img
-                      src="/assets/images/blog/blog-footer-02.jpg"
+                      src="/assets/blog/blog-footer-02.jpg"
                       alt="blog"
                     />
                   </div>
@@ -500,6 +518,18 @@ export default async function decorate(block) {
         </span>
       </div>
   `;
-
+  const backToTopAnchor = document.createElement('a');
+  // eslint-disable-next-line no-script-url
+  backToTopAnchor.href = 'javascript:void(0)';
+  backToTopAnchor.className = 'back-to-top fixed bottom-8 left-auto right-8 z-[999] hidden h-10 w-10 items-center justify-center rounded-md bg-primary text-white shadow-md transition duration-300 ease-in-out hover:bg-dark';
+  backToTopAnchor.innerHTML = '<span class="mt-[6px] h-3 w-3 rotate-45 border-l border-t border-white"></span>';
   block.append(footer);
+  block.append(backToTopAnchor);
+  // assign click functionality to back to top anchor.
+  const backToTopEle = document.querySelector('.back-to-top');
+  if (backToTopEle) {
+    document.querySelector('.back-to-top').onclick = () => {
+      scrollTo(document.documentElement);
+    };
+  }
 }

@@ -37,13 +37,6 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
-
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
 .icon {
   display: inline-block;
   height: 24px;
@@ -82,4 +75,8 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+.hero-par a {
+  color: darkorange;
 }

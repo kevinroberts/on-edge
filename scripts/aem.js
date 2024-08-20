@@ -574,7 +574,7 @@ async function loadBlock(block) {
  */
 function decorateBlock(block) {
   const shortBlockName = block.classList[0];
-  if (shortBlockName) {
+  if (shortBlockName && shortBlockName !== 'container') {
     block.classList.add('block');
     block.dataset.blockName = shortBlockName;
     block.dataset.blockStatus = 'initialized';
@@ -601,7 +601,6 @@ function decorateBlocks(main) {
  */
 async function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
-  console.log('header block', headerBlock);
   header.append(headerBlock);
   decorateBlock(headerBlock);
   return loadBlock(headerBlock);
