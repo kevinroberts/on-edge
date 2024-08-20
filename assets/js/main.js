@@ -1,46 +1,4 @@
 (function () {
-  // ======= Sticky
-  window.onscroll = function () {
-    const headerEle = document.querySelector('.ud-header');
-    const sticky = headerEle.offsetTop;
-    const logo = document.querySelectorAll('.header-logo');
-
-    if (window.pageYOffset > sticky) {
-      headerEle.classList.add('sticky');
-    } else {
-      headerEle.classList.remove('sticky');
-    }
-
-    if (logo.length) {
-      // === logo change
-      if (headerEle.classList.contains('sticky')) {
-        document.querySelector('.header-logo').src =
-          'assets/logo/logo.svg';
-      } else {
-        document.querySelector('.header-logo').src =
-          'assets/logo/logo-white.svg';
-      }
-    }
-
-    if (document.documentElement.classList.contains('dark')) {
-      if (logo.length) {
-        // === logo change
-        if (headerEle.classList.contains('sticky')) {
-          document.querySelector('.header-logo').src = 'assets/logo/logo-white.svg';
-        }
-      }
-    }
-
-    // show or hide the back-top-top button
-    const backToTop = document.querySelector('.back-to-top');
-    if (backToTop) {
-      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        backToTop.style.display = 'flex';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    }
-  };
 
   // ===== Faq accordion
   const faqs = document.querySelectorAll('.single-faq');
