@@ -262,6 +262,7 @@ function createOptimizedPicture(
   alt = '',
   eager = false,
   breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }],
+  className = '',
 ) {
   const url = new URL(src, window.location.href);
   const picture = document.createElement('picture');
@@ -288,6 +289,7 @@ function createOptimizedPicture(
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
       img.setAttribute('alt', alt);
+      img.className = className;
       picture.appendChild(img);
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
     }
